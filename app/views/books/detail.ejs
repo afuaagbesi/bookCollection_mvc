@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= book.title %> - Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1><%= book.title %> - Details</h1>
+        <p><strong>Author:</strong> <%= book.author %></p>
+        <p><strong>Price:</strong> $<%= book.price %></p>
+        <p><strong>Copies Left:</strong> <%= book.copiesLeft %></p>
+        <p><strong>Genre:</strong> <%= book.genre ? book.genre.name : 'N/A' %></p>
+        <% if (book.imageUrl) { %>
+            <img src="<%= book.imageUrl %>" alt="<%= book.title %>" class="img-fluid">
+        <% } %>
+
+        <a href="/books" class="btn btn-secondary mt-3">Back to Book List</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

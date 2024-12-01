@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-image {
+            background-image: url('/images/hero.jpg'); /* Ensure you put your hero image in the 'public' folder */
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-text {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .hero-text h1 {
+            font-size: 50px;
+        }
+        .hero-buttons {
+            margin-top: 20px;
+        }
+        .btn-custom {
+            font-size: 18px;
+            margin: 10px;
+            padding: 15px 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Welcome to Our Book Collection</h1>
+            <p>Explore a variety of books and genres!</p>
+            <div class="hero-buttons">
+                <a href="/books" class="btn btn-primary btn-custom">View Books</a>
+                <a href="/genres" class="btn btn-secondary btn-custom">View Genres</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional: Include Bootstrap's JS if needed for any interactivity -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

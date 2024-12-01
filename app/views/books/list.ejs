@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Collection</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Books Collection</h1>
+        <a href="/books/add" class="btn btn-primary mb-3">Add New Book</a>
+           <!-- Search Form -->
+        <form action="/books/search" method="get" class="mb-4">
+          <input type="text" name="search" value="<%= searchQuery %>" class="form-control" placeholder="Search by Title or Author" />
+          <button type="submit" class="btn btn-primary mt-2">Search</button>
+      </form>
+
+      <!-- Genre Filter -->
+      <form action="/books/filter" method="get" class="mb-4">
+          <select name="genreId" class="form-control" onchange="this.form.submit()">
+              <option value="">All Genres</option>
+              <% genres.forEach(genre => { %>
+                  <option value="<%= genre.id %>" <%= genre.id == genreId ? 'selected' : '' %>><%= genre.name %></option>
+              <% }) %>
+          </select>
+
+      
+        <!-- Row to display books as cards -->
+        <div class="row">
+            <% books.forEach(book => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <!-- Image of the book -->
+                        <img src="<%= book.imageUrl || 'https://via.placeholder.com/300x200' %>" class="card-img-top" alt="<%= book.title %>">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title"><%= book.title %></h5>
+                            <p class="card-text"><strong>Author:</strong> <%= book.author %></p>
+                            <p class="card-text"><strong>Price:</strong> <%= book.price %> USD</p>
+                            <p class="card-text"><strong>Copies Left:</strong> <%= book.copiesLeft %></p>
+                            <p class="card-text"><strong>Genre:</strong> <%= book.genre ? book.genre.name : 'N/A' %></p>
+
+                            <!-- Action Buttons -->
+                            <a href="/books/<%= book.id %>" class="btn btn-info btn-sm">View</a>
+                            <a href="/books/edit/<%= book.id %>" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="/books/delete/<%= book.id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

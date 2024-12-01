@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Edit Book: <%= book.title %></h2>
+        <form action="/books/edit/<%= book.id %>" method="POST">
+            <!-- Title Input -->
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= book.title %>" required>
+            </div>
+
+            <!-- Author Input -->
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" name="author" value="<%= book.author %>" required>
+            </div>
+
+            <!-- Price Input -->
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" value="<%= book.price %>" step="0.01" required>
+            </div>
+
+            <!-- Copies Left Input -->
+            <div class="form-group">
+                <label for="copiesLeft">Copies Left</label>
+                <input type="number" class="form-control" id="copiesLeft" name="copiesLeft" value="<%= book.copiesLeft %>" required>
+            </div>
+
+            <!-- Genre Dropdown -->
+            <div class="form-group">
+                <label for="genreId">Genre</label>
+                <select class="form-control" id="genreId" name="genreId" required>
+                    <% genres.forEach(genre => { %>
+                        <option value="<%= genre.id %>" <%= genre.id === book.genreId ? 'selected' : '' %>><%= genre.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <!-- Image URL Input -->
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" class="form-control" id="imageUrl" name="imageUrl" value="<%= book.imageUrl %>">
+                <small class="form-text text-muted">Paste the image URL here</small>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Update Book</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
