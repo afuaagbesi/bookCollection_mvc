@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize'); 
 const sequelize = require('../../config/db'); // Import sequelize instance
 
 class Book extends Model {}
@@ -10,41 +10,45 @@ Book.init({
     autoIncrement: true,
   },
   title: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(255), // Default length should suffice
     allowNull: false,
   },
   author: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(255),
     allowNull: false,
   },
   price: {
     type: DataTypes.FLOAT,
     allowNull: false,
+    validate: {
+      min: 0, // Prevent negative prices
+    },
   },
   copiesLeft: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'copies_left', // Match column name in DB
   },
-  genreId: {  // Define genreId as a foreign key
+  genreId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'genres', // Reference to Genre model (table name)
+      model: 'genres', // Table name for genres
       key: 'id',
     },
     allowNull: false,
+    field: 'genre_id', // Match column name in DB
   },
-  imageUrl: {  // Add the imageUrl field to store image URLs
-    type: DataTypes.STRING,
-    allowNull: true,
+  imageUrl: {
+    type: DataTypes.TEXT, // Use TEXT for potentially longer URLs
+    allowNull: true, // Allow null if no image is provided
+    
+    field: 'image_url', // Match column name in DB
   },
 }, {
   sequelize,
   modelName: 'Book',
   tableName: 'books',
-  timestamps: false, // Omit timestamps if not needed
+  timestamps: false, // Skip createdAt and updatedAt
 });
-
-// Do not define the association (Book.belongsTo) here.
-// Define it centrally in your main application file (e.g., server.js or associations.js).
 
 module.exports = Book;
