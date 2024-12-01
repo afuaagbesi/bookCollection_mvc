@@ -1,11 +1,21 @@
-require('dotenv').config();
+require('dotenv').config({path: __dirname + '/../.env'});
 const { Sequelize } = require('sequelize');
 
 // Connect to PostgreSQL
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-  host: process.env.DB_HOST,
+const sequelize = new Sequelize(process.env.DATABASE_URL_EXT, {
   dialect: 'postgres',
-  logging: false,
+  pool: {
+    max: 5,    // Maximum number of connections
+    min: 0,    // Minimum number of connections
+    acquire: 30000,  // Timeout before throwing an error if a connection is not acquired
+    idle: 10000,     // Time before releasing an idle connection
+  },
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Allow self-signed certificates if necessary
+    },
+  },
 });
 
 sequelize
