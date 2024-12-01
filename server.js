@@ -33,9 +33,6 @@ app.get('/', (req, res) => {
   });
   
 // Home route to redirect to books page
-app.get('/', (req, res) => {
-  res.redirect('/books');  // You can redirect to /books or /genres, based on your design
-});
 
 
   
