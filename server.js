@@ -32,8 +32,6 @@ app.get('/', (req, res) => {
     res.render('home');
   });
   
-// Home route to redirect to books page
-
 
   
 // Sync Database (Don't use force: true to avoid deleting existing data)
