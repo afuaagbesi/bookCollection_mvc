@@ -1,9 +1,11 @@
 require('dotenv').config({path: __dirname + '/../.env'});
 const { Sequelize } = require('sequelize');
+import pg from 'pg';
 
 // Connect to PostgreSQL
 const sequelize = new Sequelize(process.env.DATABASE_URL_EXT, {
   dialect: 'postgres',
+  dialectModule: pg,
   pool: {
     max: 5,    // Maximum number of connections
     min: 0,    // Minimum number of connections
