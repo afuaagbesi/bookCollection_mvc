@@ -37,8 +37,6 @@ app.get('/', (req, res) => {
 // Sync Database (Don't use force: true to avoid deleting existing data)
 sequelize.sync().then(() => {
   console.log('Database synced');
-  // Optional: You can seed your database here if needed, but do not force sync if the tables are already populated
-  // For example, you could check and seed some data if necessary (in case of an empty genre table).
 });
 
 // // Start Server
