@@ -41,8 +41,10 @@ sequelize.sync().then(() => {
   // For example, you could check and seed some data if necessary (in case of an empty genre table).
 });
 
-// Start Server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// // Start Server
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+module.exports = app;
